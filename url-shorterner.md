@@ -251,10 +251,10 @@ This method ensures that **short URLs remain unique and scalable**, even when ha
 
 ### **9.2 Maximum Unique Short Codes in Base62 (6-character key)**  
 
-Base62 uses **A-Z (26), a-z (26), and 0-9 (10)**, meaning **62** unique characters.  
+* Base62 uses **A-Z (26), a-z (26), and 0-9 (10)**, meaning **62** unique characters.  
 
-For a **6-character short code**, the total number of unique codes is: [62^6]
+* For a **6-character short code**, the total number of unique codes is: [62^6]
 
-The maximum number of unique short codes that can be generated using a **6-character Base62 encoding** is **56,800,235,584** (approximately **56.8 billion**).  
+* The maximum number of unique short codes that can be generated using a **6-character Base62 encoding** is **56,800,235,584** (approximately **56.8 billion**).  
 
-This means that a URL shortener can **handle up to 56.8 billion unique URLs** before running out of unique keys. If this limit is approached, increasing the key length to **7 characters** will significantly expand the capacity.
+* This means that a URL shortener can **handle up to 56.8 billion unique URLs** before running out of unique keys. If this limit is approached, increasing the key length to **7 characters** will significantly expand the capacity.
