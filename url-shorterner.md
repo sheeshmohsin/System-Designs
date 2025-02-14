@@ -156,12 +156,12 @@ def get_original_url(short_key):
 
 Here is a **detailed system design diagram** for the URL shortener, showcasing how the components interact.
 
-## Miscellaneous 
+## **9. Miscellaneous**
 ### **Hashing Algorithm Fallback: SHA-256 + Truncate**
 When using **Base62 encoding**, we may encounter **collisions** (i.e., the same short key being generated for different URLs). To handle this, we use a **fallback hashing method** such as **SHA-256** and then truncate it to obtain a unique, deterministic short key.
 
 
-### **1. Steps for Generating a Short URL with SHA-256 + Truncate**
+#### **1. Steps for Generating a Short URL with SHA-256 + Truncate**
 1. **Hash the URL using SHA-256.**
 2. **Convert the hash to Base62 encoding.**
 3. **Truncate the hash to a fixed length (e.g., 6-8 characters).**
@@ -169,38 +169,37 @@ When using **Base62 encoding**, we may encounter **collisions** (i.e., the same 
 5. If a collision exists, **append a counter** and rehash.
 
 
-### **2. Example of SHA-256 Hashing + Truncation**
-#### **Example Input**
+#### **2. Example of SHA-256 Hashing + Truncation**
+##### **Example Input**
 Original long URL:  
 `https://www.example.com/my-very-long-url-that-needs-shortening`
 
-#### **Step 1: Generate SHA-256 Hash**
+##### **Step 1: Generate SHA-256 Hash**
 SHA-256 of the URL:
 
 ```
 3f8b31cf32a1e2d72e8adbd30f63e22c23d20a2eaf9a6a44f312f8f9f1f6236b
 ```
 
-#### **Step 2: Convert to Base62**
+##### **Step 2: Convert to Base62**
 Convert this **hexadecimal SHA-256 hash** to Base62:
 
 ```
 "Gh3F2aB7kLp"
 ```
 
-#### **Step 3: Truncate the Key**
+##### **Step 3: Truncate the Key**
 Take the **first 6 characters** of the Base62 string:
 
 ```
 "Gh3F2a"
 ```
 
-#### **Step 4: Check for Collision**
+##### **Step 4: Check for Collision**
 - If `"Gh3F2a"` **already exists** in the database, append a counter (`1`, `2`, etc.), rehash, and retry.
 
----
 
-### **3. Pseudocode for SHA-256 + Truncate**
+#### **3. Pseudocode for SHA-256 + Truncate**
 ```python
 import hashlib
 import base64
@@ -230,9 +229,8 @@ short_key = generate_short_key(long_url)
 print("Short URL Key:", short_key)
 ```
 
----
 
-### **4. Handling Collisions**
+#### **4. Handling Collisions**
 - If a collision is detected (i.e., the short key **already exists** in the database), we:
   1. Append a **unique counter** to the original URL before hashing.
   2. Retry the hashing process.
@@ -243,7 +241,7 @@ print("Short URL Key:", short_key)
 3. Retry with `"https://example.com1"` → `"Xb7A3D"`
 
 
-### **5. Advantages of SHA-256 + Truncate**
+#### **5. Advantages of SHA-256 + Truncate**
 ✅ **Ensures uniqueness** (SHA-256 is cryptographically strong).  
 ✅ **Avoids collisions** when combined with retries.  
 ✅ **Fast and deterministic** (same input always gives the same short key).  
