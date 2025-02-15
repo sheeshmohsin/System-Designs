@@ -158,4 +158,6 @@ Here is the **detailed system architecture** diagram for the **video streaming p
 
 ### **[9.1. Why Use SQL for Metadata & NoSQL for Video Segments?](video-streaming-platform/sql-vs-nosql.md)**  
 
+### **[9.2. Video Transcoding Pipeline - Detailed Explanation?](video-streaming-platform/video-transcoding-pipeline.md)**  
+
 
