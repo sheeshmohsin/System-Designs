@@ -160,4 +160,6 @@ Here is the **detailed system architecture** diagram for the **video streaming p
 
 ### **[9.2. Video Transcoding Pipeline - Detailed Explanation?](video-streaming-platform/video-transcoding-pipeline.md)**  
 
+### **[9.3. Streaming Workflow - Detailed Explanation?](video-streaming-platform/streaming-workflow.md)**
+
 
