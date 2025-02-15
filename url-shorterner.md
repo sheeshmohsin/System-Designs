@@ -156,6 +156,8 @@ def get_original_url(short_key):
 
 Here is a **detailed system design diagram** for the URL shortener, showcasing how the components interact.
 
+![URL Shortener Diagram](url-shortener-diag.jpg)
+
 ## **9. Miscellaneous**
 ### **9.1 Hashing Algorithm Fallback: SHA-256 + Truncate**
 When using **Base62 encoding**, we may encounter **collisions** (i.e., the same short key being generated for different URLs). To handle this, we use a **fallback hashing method** such as **SHA-256** and then truncate it to obtain a unique, deterministic short key.
