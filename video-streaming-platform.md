@@ -164,4 +164,6 @@ Here is the **detailed system architecture** diagram for the **video streaming p
 
 ### **[9.4. Unauthorized Downloads & Digital Rights Management (DRM) in Video Streaming](video-streaming-platform/DRM.md)**
 
+### **[9.5. CDN Caching for Video Streaming](video-streaming-platform/CDN-Caching.md)**
+
 
