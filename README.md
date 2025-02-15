@@ -14,7 +14,7 @@ This repository serves as a collection of system design case studies, best pract
 
 ### 📚 **Topics Covered**
 - Designing a **[Scalable URL Shortener](url-shorterner.md)**
-- Architecting a **Distributed Video Streaming Platform**
+- Architecting a **[Distributed Video Streaming Platform](video-streaming-platform.md)**
 - Building a **Ride-Sharing System (like Uber)**
 - Designing a **Real-time Chat Application**
 - Architecting an **E-commerce System**
