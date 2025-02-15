@@ -13,7 +13,7 @@ This repository serves as a collection of system design case studies, best pract
 - **Trade-offs and alternative approaches**
 
 ### 📚 **Topics Covered**
-- Designing a **Scalable URL Shortener**
+- Designing a **[Scalable URL Shortener](url-shorterner.md)**
 - Architecting a **Distributed Video Streaming Platform**
 - Building a **Ride-Sharing System (like Uber)**
 - Designing a **Real-time Chat Application**
