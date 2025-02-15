@@ -156,7 +156,7 @@ def get_original_url(short_key):
 
 Here is a **detailed system design diagram** for the URL shortener, showcasing how the components interact.
 
-![URL Shortener Diagram](url-shortener-diag.jpg)
+![URL Shortener Diagram](url-shortener-diag.png)
 
 ## **9. Miscellaneous**
 ### **9.1 Hashing Algorithm Fallback: SHA-256 + Truncate**
