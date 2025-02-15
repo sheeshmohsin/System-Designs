@@ -258,3 +258,99 @@ This method ensures that **short URLs remain unique and scalable**, even when ha
 * The maximum number of unique short codes that can be generated using a **6-character Base62 encoding** is **56,800,235,584** (approximately **56.8 billion**).  
 
 * This means that a URL shortener can **handle up to 56.8 billion unique URLs** before running out of unique keys. If this limit is approached, increasing the key length to **7 characters** will significantly expand the capacity.
+
+### **9.3 Sharding: Short_key Hash Mod (N Servers) for Distribution**
+Sharding is used to **distribute database records** across multiple servers to handle large-scale traffic efficiently. Instead of storing all short URLs in a single database, we **split data across multiple databases (shards)**.
+
+#### **🔹 How Does It Work?**
+We use the **modulus operation (`%`)** on the hashed `short_key` to determine which shard (database) will store a given entry.
+
+1. Compute the **hash** of the `short_key`.
+2. Apply modulo operation with the number of database shards (`N`).
+3. Store the data in the corresponding **shard**.
+
+#### **🔹 Formula**
+\[
+\text{Shard Number} = \text{Hash}(\text{short_key}) \mod N
+\]
+Where:
+- `short_key` is the **unique URL identifier**.
+- `N` is the **number of database shards**.
+
+
+#### **🔹 Example**
+**Assume 4 database shards (`N = 4`).**
+1. **Short key: "abc123"**
+   - Hash("abc123") → `123456789`
+   - `123456789 % 4 = 1` → Stored in **Shard 1**.
+
+2. **Short key: "xyz789"**
+   - Hash("xyz789") → `987654321`
+   - `987654321 % 4 = 3` → Stored in **Shard 3**.
+
+
+#### **🔹 Advantages**
+✅ **Even distribution** of data across `N` databases.  
+✅ **Parallel processing** increases system throughput.  
+✅ **Easy to scale** (add more shards dynamically).  
+
+#### **🔹 Challenges**
+⚠️ **Shard rebalancing issue**: If `N` changes, all entries need re-hashing.  
+⚠️ **Cross-shard queries are complex**: Requires an indexing service (e.g., Elasticsearch) to fetch records across shards.  
+
+#### **🔹 Solution for Rebalancing**
+Use **Consistent Hashing** instead of `mod N`, so adding new shards **doesn't require re-hashing** all previous records.
+
+### **9.4. Partitioning: Time-Based Partitioning for Expiry Cleanup**
+Partitioning divides **database tables into smaller chunks** (partitions) for better **query performance and data management**. In a **URL shortener**, we can use **time-based partitioning** to **manage expired links** efficiently.
+
+#### **🔹 How Does It Work?**
+- Instead of storing all URLs in **one large table**, we create **separate partitions** for different time ranges (e.g., monthly, yearly).
+- Expired URLs can be **quickly dropped** by deleting entire partitions.
+
+#### **🔹 Example Partitioning Strategy**
+Assume we use **monthly partitioning**:
+1. **Partition for January 2025:**
+   ```sql
+   CREATE TABLE urls_2025_01 PARTITION OF urls
+   FOR VALUES FROM ('2025-01-01') TO ('2025-02-01');
+   ```
+2. **Partition for February 2025:**
+   ```sql
+   CREATE TABLE urls_2025_02 PARTITION OF urls
+   FOR VALUES FROM ('2025-02-01') TO ('2025-03-01');
+   ```
+3. **Query Optimization:**
+   ```sql
+   SELECT * FROM urls WHERE created_at >= '2025-01-01' AND created_at < '2025-02-01';
+   ```
+   - Queries automatically **scan fewer rows** → Faster results.
+
+4. **Dropping Expired URLs:**
+   ```sql
+   DROP TABLE urls_2024_12;
+   ```
+   - This instantly **removes all expired URLs** instead of running slow `DELETE` queries.
+
+#### **🔹 Advantages**
+✅ **Improves performance** → Only relevant partitions are scanned.  
+✅ **Efficient expiry cleanup** → Dropping old partitions is **instant**.  
+✅ **Speeds up deletion** → No need for costly `DELETE` operations.  
+
+#### **🔹 Challenges**
+⚠️ **Partition management overhead** → Needs proper indexing.  
+⚠️ **Choosing partition granularity** → Monthly may be too coarse, weekly may be too fine.  
+
+
+### **9.5 💡 When to Use Sharding vs. Partitioning?**
+| Feature         | **Sharding** | **Partitioning** |
+|---------------|------------|--------------|
+| **Goal** | Scale horizontally (distribute across databases) | Improve query performance within a database |
+| **Method** | Split data across multiple databases | Split table into smaller partitions |
+| **Use Case** | Handle **large volume of traffic** | Optimize **query performance & expiry cleanup** |
+| **Example** | Store short URLs in **multiple DBs** | Store **old URLs in separate partitions** |
+
+#### **Conclusion**
+- **Sharding (Short_key Hash % N)** → Distributes URLs across multiple databases for **scalability**.
+- **Partitioning (Time-based)** → Organizes **expired links** efficiently to speed up cleanup.
+- **Both can be used together** in a **high-scale URL shortener**.
