@@ -140,6 +140,43 @@ The `/concepts` directory contains detailed explanations of fundamental patterns
    - Global load balancing with DNS
    - Used in: All distributed systems
 
+4. **[API Design Patterns](concepts/api-design-patterns.md)**
+   - REST, GraphQL, gRPC, WebSockets comparison
+   - Pagination, filtering, versioning
+   - Authentication and security
+   - Used in: All systems with APIs
+
+5. **[Message Queues](concepts/message-queues.md)**
+   - Point-to-Point vs Pub/Sub patterns
+   - RabbitMQ, Kafka, SQS comparison
+   - Delivery guarantees and reliability
+   - Used in: Async processing, event-driven systems
+
+6. **[Consistency Patterns](concepts/consistency-patterns.md)**
+   - CAP theorem and trade-offs
+   - Strong vs Eventual consistency
+   - Quorum, 2PC, Saga patterns
+   - Used in: Distributed databases, microservices
+
+7. **[WebSockets & Real-Time Communication](concepts/websockets-realtime.md)**
+   - WebSockets, SSE, Long Polling comparison
+   - Scaling WebSocket connections
+   - Heartbeat and reconnection strategies
+   - Used in: Chat, live notifications, collaborative editing
+
+8. **[Search & Indexing](concepts/search-indexing.md)**
+   - Inverted index and TF-IDF
+   - Elasticsearch basics and queries
+   - Fuzzy search, autocomplete, synonyms
+   - Used in: E-commerce, content search
+
+9. **[Distributed Transactions](concepts/distributed-transactions.md)**
+   - Two-Phase Commit (2PC)
+   - Saga pattern (Choreography vs Orchestration)
+   - Try-Confirm/Cancel (TCC)
+   - Event Sourcing and Outbox pattern
+   - Used in: E-commerce orders, financial transactions
+
 ### When to Create New Concept Documents
 
 Create a new concept document when:

@@ -81,6 +81,9 @@ Learn fundamental patterns that appear across multiple system designs:
 | **API Design Patterns** | All Systems | [concepts/api-design-patterns.md](concepts/api-design-patterns.md) |
 | **Message Queues** | Video Streaming, Async Processing | [concepts/message-queues.md](concepts/message-queues.md) |
 | **Consistency Patterns** | Distributed Systems | [concepts/consistency-patterns.md](concepts/consistency-patterns.md) |
+| **WebSockets & Real-Time** | Chat, Live Updates | [concepts/websockets-realtime.md](concepts/websockets-realtime.md) |
+| **Search & Indexing** | E-commerce, Content Platforms | [concepts/search-indexing.md](concepts/search-indexing.md) |
+| **Distributed Transactions** | E-commerce, Financial Systems | [concepts/distributed-transactions.md](concepts/distributed-transactions.md) |
 | **CDN Architecture** | Video Streaming, Static Content | [Video Streaming - CDN](video-streaming-platform/CDN-Caching.md) |
 
 ## 🎓 How to Use This Repository
