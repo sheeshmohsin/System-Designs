@@ -87,6 +87,8 @@ Learn fundamental patterns that appear across multiple system designs:
 | **Distributed Transactions** | E-commerce, Financial Systems | [concepts/distributed-transactions.md](concepts/distributed-transactions.md) |
 | **Geospatial Systems** | Ride-Sharing, Location Services | [concepts/geospatial-systems.md](concepts/geospatial-systems.md) |
 | **Notification Systems** | All User-Facing Applications | [concepts/notification-systems.md](concepts/notification-systems.md) |
+| **Service Discovery** | Microservices, Distributed Systems | [concepts/service-discovery.md](concepts/service-discovery.md) |
+| **Circuit Breaker & Resilience** | All Distributed Systems | [concepts/circuit-breaker-resilience.md](concepts/circuit-breaker-resilience.md) |
 | **CDN Architecture** | Video Streaming, Static Content | [Video Streaming - CDN](video-streaming-platform/CDN-Caching.md) |
 
 ## 🎓 How to Use This Repository
