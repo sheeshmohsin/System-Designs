@@ -77,6 +77,7 @@ Learn fundamental patterns that appear across multiple system designs:
 |---------|----------------|-----------|
 | **Caching Strategies** | URL Shortener, Video Streaming | [concepts/caching-strategies.md](concepts/caching-strategies.md) |
 | **Database Sharding** | URL Shortener, Chat Systems | [concepts/database-sharding.md](concepts/database-sharding.md) |
+| **Database Replication** | High Availability, Read Scaling | [concepts/database-sharding.md#database-replication](concepts/database-sharding.md#database-replication) |
 | **Load Balancing** | All Systems | [concepts/load-balancing.md](concepts/load-balancing.md) |
 | **API Design Patterns** | All Systems | [concepts/api-design-patterns.md](concepts/api-design-patterns.md) |
 | **Message Queues** | Video Streaming, Async Processing | [concepts/message-queues.md](concepts/message-queues.md) |
@@ -84,6 +85,8 @@ Learn fundamental patterns that appear across multiple system designs:
 | **WebSockets & Real-Time** | Chat, Live Updates | [concepts/websockets-realtime.md](concepts/websockets-realtime.md) |
 | **Search & Indexing** | E-commerce, Content Platforms | [concepts/search-indexing.md](concepts/search-indexing.md) |
 | **Distributed Transactions** | E-commerce, Financial Systems | [concepts/distributed-transactions.md](concepts/distributed-transactions.md) |
+| **Geospatial Systems** | Ride-Sharing, Location Services | [concepts/geospatial-systems.md](concepts/geospatial-systems.md) |
+| **Notification Systems** | All User-Facing Applications | [concepts/notification-systems.md](concepts/notification-systems.md) |
 | **CDN Architecture** | Video Streaming, Static Content | [Video Streaming - CDN](video-streaming-platform/CDN-Caching.md) |
 
 ## 🎓 How to Use This Repository
