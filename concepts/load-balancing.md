@@ -15,8 +15,11 @@ A **load balancer** distributes incoming network traffic across multiple servers
 ### Benefits of Load Balancing
 
 ✅ **High availability** - If one server fails, traffic routes to healthy servers
+
 ✅ **Scalability** - Add more servers to handle more traffic
+
 ✅ **Better performance** - Distribute load evenly across servers
+
 ✅ **Flexibility** - Perform maintenance without downtime
 
 ---
@@ -506,10 +509,15 @@ See: [Video Streaming - Traffic Scaling](../video-streaming-platform.md#6-scalin
 ## Summary
 
 ✅ **Round Robin** - Simple, equal distribution
+
 ✅ **Least Connections** - Best for varying request times
+
 ✅ **IP Hash** - Session persistence
+
 ✅ **Layer 7** - Content-based routing
+
 ✅ **Health Checks** - Automatic failover
+
 ✅ **Use external session storage** - Avoid sticky sessions
 
 **Golden Rule:** Load balancing enables horizontal scaling - add more servers to handle more traffic!

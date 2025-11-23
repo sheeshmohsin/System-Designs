@@ -6,15 +6,22 @@
 
 ### **Functional Requirements**
 ✅ [Requirement 1]
+
 ✅ [Requirement 2]
+
 ✅ [Requirement 3]
+
 ✅ [Requirement 4]
+
 ✅ [Requirement 5]
 
 ### **Non-Functional Requirements**
 ✅ [Performance requirement - e.g., Low latency, High throughput]
+
 ✅ [Scalability requirement - e.g., Handle millions of users]
+
 ✅ [Reliability requirement - e.g., 99.9% uptime]
+
 ✅ [Other requirements - e.g., Security, Consistency]
 
 ## **2. High-Level Architecture**
@@ -246,8 +253,11 @@ Try implementing [specific component] using [technology]. Focus on:
 ## **Summary: Key Takeaways**
 
 ✅ **[Takeaway 1]**
+
 ✅ **[Takeaway 2]**
+
 ✅ **[Takeaway 3]**
+
 ✅ **[Takeaway 4]**
 
 🚀 **This is how [Real Company 1], [Real Company 2] implement [system type]!**

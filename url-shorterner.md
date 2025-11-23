@@ -4,15 +4,22 @@
 
 ### **Functional Requirements**  
 ✅ Shorten a long URL to a unique short URL.  
+
 ✅ Redirect users to the original URL when accessing the short URL.  
+
 ✅ Track statistics (clicks, location, device, etc.).  
+
 ✅ Support custom short URLs.  
+
 ✅ Support URL expiry.  
 
 ### **Non-Functional Requirements**  
 ✅ High availability and low latency.  
+
 ✅ Scalable to handle millions of requests.  
+
 ✅ Prevent URL collisions.  
+
 ✅ Fast redirections (sub-10ms).  
 
 ## **2. High-Level Architecture**  
@@ -245,7 +252,9 @@ print("Short URL Key:", short_key)
 
 #### **5. Advantages of SHA-256 + Truncate**
 ✅ **Ensures uniqueness** (SHA-256 is cryptographically strong).  
+
 ✅ **Avoids collisions** when combined with retries.  
+
 ✅ **Fast and deterministic** (same input always gives the same short key).  
 
 
@@ -293,7 +302,9 @@ Where:
 
 #### **🔹 Advantages**
 ✅ **Even distribution** of data across `N` databases.  
+
 ✅ **Parallel processing** increases system throughput.  
+
 ✅ **Easy to scale** (add more shards dynamically).  
 
 #### **🔹 Challenges**
@@ -336,7 +347,9 @@ Assume we use **monthly partitioning**:
 
 #### **🔹 Advantages**
 ✅ **Improves performance** → Only relevant partitions are scanned.  
+
 ✅ **Efficient expiry cleanup** → Dropping old partitions is **instant**.  
+
 ✅ **Speeds up deletion** → No need for costly `DELETE` operations.  
 
 #### **🔹 Challenges**
@@ -753,11 +766,17 @@ def create_short_url(url):
 ## **12. Summary: Key Takeaways**
 
 ✅ **Base62 encoding** - Compact, URL-safe short keys (56.8B combinations with 6 chars)
+
 ✅ **Redis caching** - Cache top 20% of URLs for 80% of traffic
+
 ✅ **Database sharding** - Distribute across multiple databases for scalability
+
 ✅ **HTTP 302** - Use temporary redirect to track every click
+
 ✅ **Async analytics** - Don't block redirects with analytics writes
+
 ✅ **Rate limiting** - Prevent abuse with per-IP and per-user limits
+
 ✅ **Read replicas** - Scale reads independently from writes (100:1 ratio)
 
 🚀 **This is how Bit.ly, TinyURL, and short.io implement URL shorteners!**

@@ -6,16 +6,24 @@ A **rate limiter** controls the rate of requests a client can make to an API, pr
 
 ### **Functional Requirements**
 ✅ Limit requests per client (by IP, user ID, API key)
+
 ✅ Support multiple time windows (per second, minute, hour, day)
+
 ✅ Support different rate limits for different endpoints
+
 ✅ Provide clear feedback when limit is exceeded (HTTP 429)
+
 ✅ Support different limit tiers (free, premium, enterprise)
 
 ### **Non-Functional Requirements**
 ✅ Low latency (< 5ms overhead)
+
 ✅ High availability (99.99% uptime)
+
 ✅ Distributed system support (multiple servers)
+
 ✅ Accurate counting (minimal false positives)
+
 ✅ Scalable to handle millions of requests
 
 ## **2. High-Level Architecture**
@@ -945,11 +953,17 @@ return new_limiter.allow_request(client_id)
 ## **12. Summary: Key Takeaways**
 
 ✅ **Sliding Window Counter** - Best balance of accuracy and efficiency
+
 ✅ **Redis** - Fast, distributed, atomic operations
+
 ✅ **Lua scripts** - Atomic multi-step operations in Redis
+
 ✅ **Multiple identifiers** - Rate limit by IP + user + API key
+
 ✅ **Graceful degradation** - Fail open if Redis is down
+
 ✅ **Custom limits** - Per endpoint, per tier, per user
+
 ✅ **Standard headers** - X-RateLimit-*, Retry-After
 
 🚀 **This is how Stripe, GitHub, Twitter, and Cloudflare implement rate limiting!**

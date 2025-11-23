@@ -99,7 +99,9 @@ Videos are **split into small chunks (4s segments)** for adaptive bitrate stream
 
 #### **Final Thoughts**  
 ✅ **Use SQL (PostgreSQL/MySQL) for structured metadata.**  
+
 ✅ **Use NoSQL (MongoDB/Cassandra) for scalable, fast retrieval of video segments.**  
+
 ✅ **Use Object Storage (AWS S3, GCS) for actual video files.**  
 
 🚀 **This hybrid approach balances performance, scalability, and consistency!**  

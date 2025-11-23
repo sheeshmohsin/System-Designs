@@ -16,8 +16,11 @@ A **distributed transaction** is a transaction that spans multiple databases, se
 ### Goals
 
 ✅ **Atomicity** - All operations succeed or all fail
+
 ✅ **Consistency** - Data remains valid across systems
+
 ✅ **Isolation** - Concurrent transactions don't interfere
+
 ✅ **Durability** - Committed changes persist
 
 ---
@@ -696,13 +699,21 @@ class SagaMonitor:
 ## Summary
 
 ✅ **2PC** - Strong consistency but blocking (rarely used)
+
 ✅ **Saga** - Most common pattern for distributed transactions
+
 ✅ **Choreography** - Event-driven sagas (decoupled)
+
 ✅ **Orchestration** - Coordinator-based sagas (easier to manage)
+
 ✅ **TCC** - Explicit try/confirm/cancel phases
+
 ✅ **Event Sourcing** - Complete audit trail
+
 ✅ **Outbox Pattern** - Atomic database + messaging
+
 ✅ **Idempotency** - Make operations safe to retry
+
 ✅ **Compensations** - Undo operations when failures occur
 
 **Golden Rule:** Prefer Saga pattern with compensating transactions over 2PC!

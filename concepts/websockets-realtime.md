@@ -16,8 +16,11 @@
 ### Benefits of Real-Time Communication
 
 ✅ **Instant updates** - Sub-second latency
+
 ✅ **Bidirectional** - Both client and server can send messages
+
 ✅ **Efficient** - Single persistent connection
+
 ✅ **Lower overhead** - No repeated HTTP handshakes
 
 ---
@@ -790,11 +793,17 @@ wss.on('connection', (ws) => {
 ## Summary
 
 ✅ **WebSockets** - Best for true bidirectional real-time (chat, gaming)
+
 ✅ **SSE** - Best for server → client updates (notifications, dashboards)
+
 ✅ **Long Polling** - Fallback when WebSockets unavailable
+
 ✅ **Redis Pub/Sub** - Scale WebSockets across multiple servers
+
 ✅ **Heartbeat** - Keep connections alive and detect failures
+
 ✅ **Exponential backoff** - Reliable reconnection strategy
+
 ✅ **Rate limiting** - Prevent abuse on WebSocket connections
 
 **Golden Rule:** Use WebSockets for interactive real-time, SSE for one-way updates!

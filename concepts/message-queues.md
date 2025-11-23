@@ -16,9 +16,13 @@ A **message queue** is an asynchronous communication pattern where messages are 
 ### Benefits of Message Queues
 
 ✅ **Decoupling** - Services don't need to know about each other
+
 ✅ **Asynchronous processing** - Sender doesn't wait for receiver
+
 ✅ **Reliability** - Messages persist until processed
+
 ✅ **Load leveling** - Queue absorbs traffic spikes
+
 ✅ **Scalability** - Add more consumers to process faster
 
 ---
@@ -614,11 +618,17 @@ Consumers:
 ## Summary
 
 ✅ **Use queues for async processing** - Don't make users wait
+
 ✅ **RabbitMQ** - General-purpose task queues
+
 ✅ **Kafka** - High-throughput event streaming
+
 ✅ **SQS** - Managed queues for AWS
+
 ✅ **Redis** - Fast, ephemeral pub/sub
+
 ✅ **Make consumers idempotent** - Handle duplicates gracefully
+
 ✅ **Monitor queue depth** - Detect processing bottlenecks
 
 **Golden Rule:** If you can do it later, use a queue!

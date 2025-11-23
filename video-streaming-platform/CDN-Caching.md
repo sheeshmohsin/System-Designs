@@ -4,8 +4,11 @@
 A **Content Delivery Network (CDN)** caches video content **closer to users** to:
 
 ✅ **Reduce latency** → Faster video loading.  
+
 ✅ **Lower bandwidth costs** → Offload traffic from the origin server.  
+
 ✅ **Improve scalability** → Handle millions of concurrent users.  
+
 ✅ **Reduce storage read load** → Minimize origin server requests.  
 
 💡 **Without a CDN:** Every user request **fetches video from the origin server** (slow + costly).  
@@ -82,6 +85,7 @@ User → Edge Cache (L2) → Regional Cache (L3) → Origin Storage (L4 - AWS S3
 
 📌 **Conclusion:**  
 ✅ **CDN reduces storage reads by 90-99%**.  
+
 ✅ **Lower egress costs (AWS S3 to the internet is expensive!).**  
 
 
@@ -128,8 +132,11 @@ To maximize **cache efficiency**, we use the following optimizations:
 
 ## **8. Summary: Why Use a CDN for Video Streaming?**
 ✅ **CDNs serve videos from cache → Reduce load on origin storage (AWS S3, GCS).**  
+
 ✅ **Reduce bandwidth costs → Fewer storage read operations.**  
+
 ✅ **Improve video startup time → No buffering!**  
+
 ✅ **Enhance scalability → Serve millions of users instantly.**  
 
 🔥 **Without a CDN → Users experience buffering, and storage costs skyrocket!**  

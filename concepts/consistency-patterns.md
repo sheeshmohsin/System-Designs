@@ -527,12 +527,19 @@ See: [Video Streaming Platform](../video-streaming-platform.md)
 ## Summary
 
 ✅ **CAP Theorem** - Choose 2: Consistency, Availability, Partition Tolerance
+
 ✅ **CP systems** - Sacrifice availability for consistency (banking)
+
 ✅ **AP systems** - Sacrifice consistency for availability (social media)
+
 ✅ **Strong consistency** - All nodes agree (slow, guaranteed correct)
+
 ✅ **Eventual consistency** - Nodes eventually agree (fast, might be stale)
+
 ✅ **Quorum** - Majority voting for consistency
+
 ✅ **2PC** - Distributed transactions (strong but blocking)
+
 ✅ **Saga** - Long-running transactions (eventual, with compensation)
 
 **Golden Rule:** Choose the weakest consistency model that satisfies your requirements - stronger consistency = lower performance!

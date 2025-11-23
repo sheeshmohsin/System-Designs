@@ -126,7 +126,9 @@ So, they use **Universal DRM**, which combines **Widevine, FairPlay, and PlayRea
 
 🚀 **Most Secure Approach:**  
 ✅ **Use Universal DRM (Widevine, FairPlay, PlayReady).**  
+
 ✅ **Block direct downloads using AES-128 + Signed URLs.**  
+
 ✅ **Prevent screen recording using OS-level DRM protection.**  
 
 ## **5. Conclusion**

@@ -7,17 +7,26 @@ A **video streaming platform** allows users to **upload, store, transcode, and s
 
 ### **🔹 Functional Requirements**
 ✅ **Video Upload** – Users can upload videos of various formats.  
+
 ✅ **Video Storage** – Store videos in an efficient and scalable way.  
+
 ✅ **Video Transcoding** – Convert videos into different resolutions (e.g., 1080p, 720p, 480p).  
+
 ✅ **Video Streaming** – Provide smooth playback (HLS, MPEG-DASH, CMAF).  
+
 ✅ **Content Delivery** – Low-latency video streaming across the globe using a **CDN**.  
+
 ✅ **User Authentication** – Support user-based content (public/private videos).  
+
 ✅ **Recommendation System** – Suggest videos based on user preferences.  
 
 ### **🔹 Non-Functional Requirements**
 ✅ **High Availability & Scalability** – Handle millions of concurrent users.  
+
 ✅ **Low Latency** – Videos should start instantly with minimal buffering.  
+
 ✅ **Efficient Storage** – Optimize costs while storing terabytes of data.  
+
 ✅ **Security** – Protect copyrighted content using DRM (Digital Rights Management).  
 
 
@@ -130,15 +139,19 @@ CREATE TABLE videos (
 
 ### **🔹 Storage Scaling**
 ✅ **Use Object Storage (S3, GCS)** for raw & processed videos.  
+
 ✅ **Cold Storage (Glacier)** for old, rarely accessed videos.  
+
 ✅ **CDN for caching** to reduce storage read load.  
 
 ### **🔹 Database Scaling**
 ✅ **Metadata DB: Partition by user_id.**  
+
 ✅ **NoSQL for fast lookups.**  
 
 ### **🔹 Traffic Scaling**
 ✅ **Load Balancer (Nginx, AWS ALB)** to distribute traffic.  
+
 ✅ **CDN Caching** to serve popular videos faster.  
 
 

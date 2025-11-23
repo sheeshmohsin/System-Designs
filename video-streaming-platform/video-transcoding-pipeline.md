@@ -143,8 +143,11 @@ https://cdn.example.com/videos/12345/720p/master.m3u8
 
 ## **6. Final Thought: Why This Pipeline Works?**
 ✅ **Scalability** – Handles millions of concurrent video streams.  
+
 ✅ **Fast Playback** – Chunks allow instant buffering & dynamic quality switching.  
+
 ✅ **Efficient Storage** – Object storage + CDN caching reduces costs.  
+
 ✅ **Adaptive Streaming** – Supports all devices and internet speeds.  
 
 🚀 **This is how Netflix, YouTube, and Twitch process videos!**  

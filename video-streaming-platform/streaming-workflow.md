@@ -9,7 +9,9 @@ It uses **pre-encoded video chunks at multiple resolutions** and allows seamless
 🔥 **Why is ABR Important?**
 
 ✅ Prevents buffering by switching to a lower resolution if the internet is slow.  
+
 ✅ Delivers the **best possible quality** based on network speed.  
+
 ✅ Ensures **smooth playback** across different devices (mobile, desktop, TV).  
 
 
@@ -121,6 +123,7 @@ Imagine a user **watching a video on Netflix**:
 
 🔥 **CMAF is the Future!**  
 ✅ **Netflix, YouTube, Disney+ use CMAF** because it **reduces storage & CDN costs**.  
+
 ✅ **One file works on all platforms** (instead of storing multiple versions).  
 
 ## **5. Summary: How Streaming Works**

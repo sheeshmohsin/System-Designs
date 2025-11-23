@@ -17,9 +17,13 @@
 ### Goals
 
 ✅ **Fail fast** - Don't wait for timeouts on known failures
+
 ✅ **Prevent cascades** - Isolate failures to single service
+
 ✅ **Preserve resources** - Don't block threads on failed calls
+
 ✅ **Auto-recovery** - Automatically test if service recovers
+
 ✅ **Graceful degradation** - Provide fallback responses
 
 ---
@@ -838,14 +842,23 @@ result, err := cb.Execute(func() (interface{}, error) {
 ## Summary
 
 ✅ **Circuit Breaker** - Fail fast when service is down, auto-recover
+
 ✅ **Retry with Exponential Backoff** - Retry transient failures with increasing delays
+
 ✅ **Timeout** - Don't wait forever for slow services
+
 ✅ **Bulkhead** - Isolate thread pools to prevent resource exhaustion
+
 ✅ **Fallback** - Provide default response when service fails
+
 ✅ **Rate Limiting** - Prevent overwhelming downstream services
+
 ✅ **Health Checks** - Monitor service and dependency health
+
 ✅ **Graceful Degradation** - Reduce functionality instead of complete failure
+
 ✅ **Combine patterns** - Use circuit breaker + retry + timeout + fallback together
+
 ✅ **Monitor metrics** - Track circuit state, failure rates, latency
 
 **Best Practices:**

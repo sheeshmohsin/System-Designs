@@ -7,8 +7,11 @@ Caching is one of the most important optimization techniques in system design. I
 ## Why Use Caching?
 
 ✅ **Reduce latency** - Memory access (1ms) vs Database access (10-100ms)
+
 ✅ **Lower database load** - Reduce expensive database queries
+
 ✅ **Handle traffic spikes** - Serve cached data during high traffic
+
 ✅ **Cost savings** - Fewer database operations = lower infrastructure costs
 
 ## Common Caching Patterns
@@ -359,9 +362,13 @@ Every 10% decrease in cache hit ratio can double database load.
 ## Summary
 
 ✅ **Cache-Aside** is the most common pattern
+
 ✅ **LRU** is the most common eviction policy
+
 ✅ **TTL** prevents stale data automatically
+
 ✅ **Multi-tier caching** handles massive scale
+
 ✅ **Good cache key design** is critical for debugging
 
 **Golden Rule:** Cache what's expensive to compute and frequently accessed!

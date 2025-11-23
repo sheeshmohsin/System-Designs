@@ -17,9 +17,13 @@
 ### Goals
 
 ✅ **Dynamic registration** - Services auto-register on startup
+
 ✅ **Automatic updates** - No manual config changes
+
 ✅ **Health checking** - Only route to healthy instances
+
 ✅ **Load distribution** - Balance traffic across instances
+
 ✅ **Failover** - Automatically remove failed instances
 
 ---
@@ -826,14 +830,23 @@ def call_payment_service(data):
 ## Summary
 
 ✅ **Client-Side Discovery** - Client queries registry, controls load balancing
+
 ✅ **Server-Side Discovery** - Load balancer handles discovery and routing
+
 ✅ **Service Registry** - Consul, Eureka, etcd, Zookeeper
+
 ✅ **Health Checking** - HTTP, TCP, Script, TTL heartbeats
+
 ✅ **DNS Discovery** - Simple, universal, but limited control
+
 ✅ **Service Mesh** - Advanced discovery with Istio, Linkerd
+
 ✅ **Self vs Third-Party Registration** - Service registers vs external registrar
+
 ✅ **Graceful shutdown** - Deregister before terminating
+
 ✅ **Cache service locations** - Reduce registry load
+
 ✅ **Handle failures** - Retry with different instances
 
 **Best Practices:**

@@ -17,10 +17,15 @@ A **notification system** is responsible for delivering messages to users across
 ### Goals
 
 ✅ **Reliable delivery** - Ensure messages reach users (at-least-once delivery)
+
 ✅ **Low latency** - Critical notifications delivered in seconds
+
 ✅ **Scalability** - Handle millions of notifications per minute
+
 ✅ **Multi-channel** - Support push, email, SMS, in-app notifications
+
 ✅ **User preferences** - Respect opt-outs and delivery preferences
+
 ✅ **Analytics** - Track delivery, open rates, and engagement
 
 ---
@@ -872,14 +877,23 @@ track_event(notification_id, 'opened', 'push')
 ## Summary
 
 ✅ **Multi-channel delivery** - Push, email, SMS, in-app
+
 ✅ **Fan-out strategies** - Fan-out on write vs read vs hybrid
+
 ✅ **Message queues** - Decouple notification sending from application logic
+
 ✅ **Priority queues** - Ensure critical notifications delivered first
+
 ✅ **User preferences** - Respect opt-outs and quiet hours
+
 ✅ **Rate limiting** - Prevent notification spam
+
 ✅ **Idempotency** - Prevent duplicate notifications
+
 ✅ **Delivery guarantees** - At-least-once delivery with retries
+
 ✅ **Scaling** - Horizontal scaling, partitioning, batching
+
 ✅ **Analytics** - Track sent, delivered, opened, clicked events
 
 **Best Practices:**

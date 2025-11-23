@@ -16,8 +16,11 @@
 ### Benefits of Search Indexing
 
 ✅ **Fast lookups** - O(log n) or better
+
 ✅ **Relevance ranking** - Best results first
+
 ✅ **Typo tolerance** - "ipone" finds "iphone"
+
 ✅ **Advanced features** - Filters, facets, autocomplete
 
 ---
@@ -796,12 +799,19 @@ def reconcile():
 ## Summary
 
 ✅ **Inverted index** - Core data structure for search
+
 ✅ **TF-IDF** - Ranking algorithm for relevance
+
 ✅ **Elasticsearch** - Industry-standard search engine
+
 ✅ **Text processing** - Tokenization, stemming, stop words
+
 ✅ **Fuzzy search** - Handle typos with Levenshtein distance
+
 ✅ **Autocomplete** - Edge n-grams for prefix matching
+
 ✅ **Filter vs Query** - Use filter for exact, query for full-text
+
 ✅ **Sync pattern** - CDC for keeping DB and search in sync
 
 **Golden Rule:** Use Elasticsearch for search, PostgreSQL for data!

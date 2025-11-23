@@ -16,8 +16,11 @@
 ### Benefits
 
 ✅ **Fast proximity queries** - O(log n) or better
+
 ✅ **Range searches** - Find all points in area
+
 ✅ **Real-time matching** - Match riders with nearby drivers instantly
+
 ✅ **Scalable** - Handle billions of locations
 
 ---
@@ -720,11 +723,17 @@ Reduces cross-shard queries for location-based searches.
 ## Summary
 
 ✅ **Geohashing** - Simple, string-based, great for basic proximity
+
 ✅ **QuadTree** - Dynamic, in-memory, good for games/real-time
+
 ✅ **R-Tree** - Database-native, production-ready (PostGIS)
+
 ✅ **S2 Geometry** - Most advanced, used by Google/Uber
+
 ✅ **Haversine** - Accurate distance calculation
+
 ✅ **Redis GEO** - Fast geospatial caching
+
 ✅ **Spatial indexes** - Critical for performance
 
 **Golden Rule:** Use Geohashing for simplicity, S2 for scale, PostGIS for databases!

@@ -7,9 +7,13 @@
 ## Why Good API Design Matters
 
 ✅ **Developer experience** - Easy to understand and use
+
 ✅ **Scalability** - Handle growing traffic efficiently
+
 ✅ **Maintainability** - Easy to update without breaking clients
+
 ✅ **Performance** - Minimize latency and bandwidth
+
 ✅ **Security** - Protect against unauthorized access
 
 ---
@@ -63,7 +67,9 @@ Content-Type: application/json
 #### REST Best Practices
 
 ✅ **Use nouns for resources** - `/users`, not `/getUsers`
+
 ✅ **Use plural names** - `/users`, not `/user`
+
 ✅ **Use HTTP status codes properly**
   - 200 OK - Success
   - 201 Created - Resource created
@@ -74,8 +80,11 @@ Content-Type: application/json
   - 500 Internal Server Error - Server error
 
 ✅ **Versioning** - `/api/v1/users`
+
 ✅ **Pagination** - `GET /users?page=2&limit=20`
+
 ✅ **Filtering** - `GET /users?status=active&role=admin`
+
 ✅ **Sorting** - `GET /users?sort=created_at&order=desc`
 
 **Pros:**
@@ -655,11 +664,17 @@ See: [Video Streaming Platform](../video-streaming-platform.md)
 ## Summary
 
 ✅ **REST** - Best for most web APIs (simple, cacheable)
+
 ✅ **GraphQL** - Best when clients need flexible queries
+
 ✅ **gRPC** - Best for internal microservices communication
+
 ✅ **WebSockets** - Best for real-time bidirectional communication
+
 ✅ **Use versioning** - Maintain backward compatibility
+
 ✅ **Implement rate limiting** - Prevent abuse
+
 ✅ **Document your API** - Use OpenAPI/Swagger
 
 **Golden Rule:** Choose the API style that best fits your use case - don't over-engineer!

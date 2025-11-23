@@ -17,8 +17,11 @@ When a single database can't handle the load, sharding distributes data across m
 ### Benefits of Sharding
 
 ✅ **Horizontal scalability** - Add more servers to handle more data
+
 ✅ **Better performance** - Distribute queries across multiple databases
+
 ✅ **Parallel processing** - Multiple queries run simultaneously
+
 ✅ **Reduced latency** - Smaller datasets = faster queries
 
 ---
@@ -208,7 +211,9 @@ Choosing the **right shard key** is critical!
 ### Good Shard Keys
 
 ✅ **High cardinality** - Many unique values (user_id, email)
+
 ✅ **Even distribution** - No hotspots
+
 ✅ **Frequently queried** - Minimize cross-shard queries
 
 **Examples:**
@@ -718,8 +723,11 @@ if check_replication_lag() > 10:
 
 ### Shard When:
 ✅ Single database can't handle the load (CPU, memory, disk)
+
 ✅ Data size exceeds single server capacity
+
 ✅ Need to scale horizontally
+
 ✅ Geographic distribution required
 
 ### Don't Shard When:
@@ -813,23 +821,35 @@ Database system handles sharding automatically.
 
 ### Sharding
 ✅ **Hash-based sharding** - Best for even distribution
+
 ✅ **Range-based sharding** - Best for range queries
+
 ✅ **Consistent hashing** - Best for dynamic sharding
+
 ✅ **Choose shard key carefully** - High cardinality, even distribution
+
 ✅ **Avoid cross-shard queries** - Design around shard boundaries
 
 ### Replication
 ✅ **Master-Slave** - Read scalability, simple setup
+
 ✅ **Master-Master** - Write scalability, conflict resolution needed
+
 ✅ **Synchronous replication** - Strong consistency, slower writes
+
 ✅ **Asynchronous replication** - Eventual consistency, faster writes
+
 ✅ **Monitor replication lag** - Ensure replicas stay in sync
+
 ✅ **Automatic failover** - Use Patroni, Sentinel, or similar tools
 
 ### Sharding + Replication
 ✅ **Combine both** - Horizontal scaling + high availability
+
 ✅ **Replicate each shard** - Fault tolerance within shards
+
 ✅ **Read from replicas** - Distribute read load
+
 ✅ **Write to masters** - Each shard has one write endpoint
 
 **Golden Rules:**
