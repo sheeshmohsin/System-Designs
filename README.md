@@ -54,15 +54,23 @@ Follow this structured learning path to build your system design knowledge progr
 
 ---
 
-### Advanced Level (Coming Soon)
+### Advanced Level
 **Estimated Time: 6-8 hours per topic**
 
 | Status | Topic | Key Concepts | Difficulty |
 |--------|-------|--------------|------------|
-| 📝 | **Ride-Sharing System (Uber)** | Geospatial indexing, WebSockets, Real-time matching | ⭐⭐⭐⭐ |
+| ✅ | **[Ride-Sharing System (Uber)](ride-sharing-system.md)** | Geospatial indexing, WebSockets, Real-time matching | ⭐⭐⭐⭐ |
 | 📝 | **Real-time Chat Application** | WebSockets, Message queues, Presence detection | ⭐⭐⭐⭐ |
 | 📝 | **E-commerce System** | Inventory management, Payment processing, Order fulfillment | ⭐⭐⭐⭐ |
 | 📝 | **Distributed Search Engine** | Inverted index, Ranking algorithms, Elasticsearch | ⭐⭐⭐⭐⭐ |
+
+**What you'll learn (Ride-Sharing):**
+- Redis GEO for geospatial driver matching
+- WebSocket scaling for real-time location tracking
+- Surge pricing algorithms
+- Distributed locks to prevent double-booking
+- Geographic database sharding
+- Fraud detection patterns
 
 **Legend:**
 - ✅ Complete with detailed documentation
@@ -169,16 +177,36 @@ Design a distributed rate limiting system to prevent API abuse and ensure fair u
 
 ---
 
+#### 4. [Ride-Sharing System (Uber/Lyft)](ride-sharing-system.md)
+Design a real-time ride-sharing platform with driver-rider matching and live location tracking.
+
+**Key Features:**
+- Real-time driver-rider matching within 2-3 seconds
+- Live location tracking with WebSockets
+- Surge pricing based on supply/demand
+- Multi-region deployment
+- Fraud detection and GPS validation
+
+**Technologies:** Redis GEO, WebSocket, PostgreSQL (sharded), Cassandra, Kafka, Geohashing
+
+**Key Concepts:**
+- Geospatial indexing with Redis GEO commands
+- Real-time communication at scale (1M concurrent connections)
+- Distributed locks to prevent double-booking
+- Saga pattern for cross-region trips
+- ETA and fare calculation algorithms
+- Grid-based surge pricing
+
+---
+
 ### Planned Designs
 
-- **Ride-Sharing System (Uber/Lyft)**
 - **Real-time Chat Application (WhatsApp/Slack)**
 - **E-commerce Platform (Amazon)**
 - **Social Media Feed (Twitter/Instagram)**
 - **Distributed Cache (Redis Cluster)**
 - **Message Queue System (Kafka/RabbitMQ)**
 - **Logging and Monitoring System**
-- **Notification Service**
 
 ## 🛠️ Prerequisites
 
