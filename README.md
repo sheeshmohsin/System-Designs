@@ -78,8 +78,10 @@ Learn fundamental patterns that appear across multiple system designs:
 | **Caching Strategies** | URL Shortener, Video Streaming | [concepts/caching-strategies.md](concepts/caching-strategies.md) |
 | **Database Sharding** | URL Shortener, Chat Systems | [concepts/database-sharding.md](concepts/database-sharding.md) |
 | **Load Balancing** | All Systems | [concepts/load-balancing.md](concepts/load-balancing.md) |
+| **API Design Patterns** | All Systems | [concepts/api-design-patterns.md](concepts/api-design-patterns.md) |
+| **Message Queues** | Video Streaming, Async Processing | [concepts/message-queues.md](concepts/message-queues.md) |
+| **Consistency Patterns** | Distributed Systems | [concepts/consistency-patterns.md](concepts/consistency-patterns.md) |
 | **CDN Architecture** | Video Streaming, Static Content | [Video Streaming - CDN](video-streaming-platform/CDN-Caching.md) |
-| **API Design Patterns** | All Systems | Coming Soon |
 
 ## 🎓 How to Use This Repository
 

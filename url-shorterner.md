@@ -356,3 +356,408 @@ Assume we use **monthly partitioning**:
 - **Sharding (Short_key Hash % N)** → Distributes URLs across multiple databases for **scalability**.
 - **Partitioning (Time-based)** → Organizes **expired links** efficiently to speed up cleanup.
 - **Both can be used together** in a **high-scale URL shortener**.
+
+---
+
+## **10. Capacity Estimation & Performance**
+
+### **Traffic Estimation**
+
+**Assumptions:**
+- 100 million URLs created per month
+- Read:Write ratio = 100:1 (100x more redirects than URL creations)
+
+**Write Requests (URL Creation):**
+```
+100M URLs/month ÷ 30 days ÷ 24 hours ÷ 3600 seconds
+= 100,000,000 ÷ 2,592,000
+≈ 38.5 requests/second (avg)
+Peak traffic (3x avg) ≈ 115 requests/second
+```
+
+**Read Requests (Redirects):**
+```
+38.5 writes/sec × 100 (read:write ratio)
+= 3,850 requests/second (avg)
+Peak traffic (3x avg) ≈ 11,550 requests/second
+```
+
+### **Storage Estimation**
+
+**Per URL Storage:**
+```
+short_key: 8 bytes (VARCHAR(8))
+original_url: ~200 bytes (average)
+created_at: 8 bytes (TIMESTAMP)
+expires_at: 8 bytes (TIMESTAMP)
+user_id: 8 bytes (BIGINT)
+
+Total per URL: ~232 bytes ≈ 250 bytes (with overhead)
+```
+
+**Total Storage for 10 Years:**
+```
+100M URLs/month × 12 months × 10 years = 12 billion URLs
+12B URLs × 250 bytes = 3 TB
+```
+
+**With Analytics (Click Tracking):**
+```
+Assume 10 clicks/URL on average
+12B URLs × 10 clicks = 120 billion clicks
+
+Per click:
+short_key: 8 bytes
+clicked_at: 8 bytes
+ip_address: 16 bytes (IPv6)
+user_agent: ~100 bytes
+
+Total per click: ~132 bytes ≈ 150 bytes (with overhead)
+
+120B clicks × 150 bytes = 18 TB
+```
+
+**Total Storage: 3 TB (URLs) + 18 TB (analytics) = 21 TB**
+
+### **Bandwidth Estimation**
+
+**Incoming (URL Creation):**
+```
+38.5 requests/sec × 250 bytes = 9,625 bytes/sec ≈ 10 KB/sec
+Peak: 115 req/sec × 250 bytes ≈ 30 KB/sec
+```
+
+**Outgoing (Redirects):**
+```
+Average redirect response size: ~500 bytes (HTTP 301 + headers)
+3,850 requests/sec × 500 bytes = 1,925,000 bytes/sec ≈ 1.9 MB/sec
+Peak: 11,550 req/sec × 500 bytes ≈ 5.7 MB/sec
+```
+
+### **Cache Memory Estimation**
+
+**Caching Strategy:** Cache 20% of daily traffic (80/20 rule - 20% of URLs get 80% of traffic)
+
+**Daily Requests:**
+```
+3,850 req/sec × 86,400 seconds = 332,640,000 redirects/day
+```
+
+**Unique URLs to cache (assuming 20% of daily traffic):**
+```
+Assume 10M unique URLs accessed per day
+Cache top 20%: 2M URLs
+2M URLs × 250 bytes = 500 MB
+```
+
+**Redis Memory Needed: ~500 MB to 1 GB (with overhead)**
+
+### **Server Estimation**
+
+**API Servers:**
+```
+Assuming each server handles 1,000 req/sec:
+Peak traffic: 11,550 req/sec ÷ 1,000 = 12 servers
+
+With redundancy (2x for failover): 24 servers
+```
+
+**Database Servers:**
+```
+Assuming sharding across 8 shards:
+Each shard handles: 11,550 ÷ 8 ≈ 1,444 req/sec
+
+With read replicas (3 replicas per shard):
+Total DB servers: 8 shards × 4 (1 primary + 3 replicas) = 32 servers
+```
+
+### **Performance Metrics**
+
+**Target Latency:**
+- URL creation: < 100ms
+- Redirection: < 10ms (with cache)
+- Redirection: < 50ms (without cache)
+
+**Availability Target: 99.9% uptime** (43.8 minutes downtime per month)
+
+**Cache Hit Ratio Target: 80-90%**
+
+---
+
+## **11. Interview Questions & Answers**
+
+### **Common Follow-up Questions**
+
+#### **Q1: How do you handle URL collisions?**
+
+**A:** We use **Base62 encoding** with auto-incrementing IDs, which makes collisions extremely rare. If using SHA-256 hashing, we:
+1. Check if short_key exists in database
+2. If collision detected, append counter to original URL and rehash
+3. Retry until unique key found
+
+Alternatively, use a **distributed ID generator** (like Twitter Snowflake) to guarantee unique IDs before Base62 encoding.
+
+---
+
+#### **Q2: How do you prevent abuse (malicious users creating millions of short URLs)?**
+
+**A:** Implement multiple defense layers:
+1. **Rate Limiting:**
+   - Per IP: 10 URLs/hour for anonymous users
+   - Per user account: 100 URLs/hour
+   - Use Redis with sliding window algorithm
+
+2. **CAPTCHA:** Require for anonymous users after 5 URLs
+
+3. **URL Validation:**
+   - Blacklist known spam domains
+   - Check against URL reputation services
+   - Limit URL length (max 2048 characters)
+
+4. **Authentication:** Require user accounts for high-volume use
+
+---
+
+#### **Q3: How do you scale reads vs. writes differently?**
+
+**A:** Reads and writes have different scaling strategies:
+
+**Scaling Reads (100x more traffic):**
+- **Caching Layer:** Redis caches 80-90% of requests
+- **CDN:** Edge caching for geographic distribution
+- **Read Replicas:** 3-5 replicas per database shard
+- **Load Balancers:** Distribute traffic across API servers
+
+**Scaling Writes:**
+- **Database Sharding:** Distribute writes across multiple shards
+- **Async Processing:** Queue analytics writes for batch processing
+- **Write-optimized DBs:** Use fast primary nodes with SSD storage
+
+---
+
+#### **Q4: What happens if the cache goes down?**
+
+**A:** **Graceful degradation:**
+1. API servers detect Redis is down (health checks)
+2. Fallback to direct database queries
+3. Response time increases from 10ms → 50ms
+4. Alert engineers immediately
+5. Auto-scaling triggers more API servers to handle load
+
+**Prevention:**
+- **Redis Cluster:** 3-5 node cluster with replication
+- **Redis Sentinel:** Automatic failover
+- **Circuit Breaker:** Prevent cascading failures
+
+---
+
+#### **Q5: How do you handle custom short URLs (vanity URLs)?**
+
+**A:** Allow users to specify custom aliases:
+
+```python
+def create_short_url(original_url, custom_alias=None):
+    if custom_alias:
+        # Validate custom alias
+        if not is_valid_alias(custom_alias):
+            return error("Invalid characters or length")
+
+        # Check if already taken
+        if db.exists(custom_alias):
+            return error("Alias already taken")
+
+        short_key = custom_alias
+    else:
+        short_key = generate_base62_key()
+
+    db.insert(short_key, original_url)
+    return short_key
+```
+
+**Constraints:**
+- 6-20 characters
+- Alphanumeric only
+- Profanity filter
+- Reserved keywords (admin, api, etc.)
+
+---
+
+#### **Q6: How do you implement URL expiration?**
+
+**A:** Two approaches:
+
+**1. Lazy Deletion (Efficient):**
+```python
+def get_original_url(short_key):
+    url_data = db.query(short_key)
+
+    # Check if expired
+    if url_data.expires_at and url_data.expires_at < now():
+        return error("URL expired", 404)
+
+    return url_data.original_url
+```
+
+**2. Active Cleanup (Background Job):**
+```python
+# Cron job runs daily
+def cleanup_expired_urls():
+    # Using time-based partitioning
+    old_partition = "urls_" + last_month
+    db.drop_partition(old_partition)
+
+    # Or bulk delete
+    db.execute("DELETE FROM urls WHERE expires_at < NOW() - INTERVAL '1 month'")
+```
+
+Use **lazy deletion** for performance + **periodic cleanup** to reclaim storage.
+
+---
+
+#### **Q7: How do you track analytics without slowing down redirects?**
+
+**A:** **Async analytics processing:**
+
+```python
+def redirect(short_key):
+    # 1. Get URL from cache/DB (fast path)
+    original_url = get_original_url(short_key)
+
+    # 2. Queue analytics event (async, non-blocking)
+    analytics_queue.send({
+        "short_key": short_key,
+        "timestamp": now(),
+        "ip": request.ip,
+        "user_agent": request.user_agent
+    })
+
+    # 3. Redirect immediately (don't wait for analytics)
+    return redirect(original_url, 301)
+
+# Background worker processes analytics
+def analytics_worker():
+    while True:
+        event = analytics_queue.receive()
+        db.insert_analytics(event)
+```
+
+**Benefits:**
+- Redirect latency stays under 10ms
+- Analytics processed in batches
+- Can handle analytics system failures without affecting redirects
+
+---
+
+#### **Q8: Should you use HTTP 301 or 302 for redirects?**
+
+**A:** Depends on the use case:
+
+**HTTP 301 (Permanent Redirect):**
+- Browsers cache the redirect
+- Faster for repeat visitors (no server hit)
+- **Problem:** Can't track analytics after first visit
+
+**HTTP 302 (Temporary Redirect):**
+- Browsers don't cache
+- Every click hits server (trackable)
+- Slower but better for analytics
+
+**Best Practice:** Use **302** for URL shorteners to track every click.
+
+---
+
+#### **Q9: How would you implement a QR code generator for short URLs?**
+
+**A:** Generate QR codes on-demand or pre-generate:
+
+**On-Demand Generation:**
+```python
+from qrcode import make
+
+@app.get("/api/v1/qr/:short_key")
+def generate_qr(short_key):
+    url = f"https://short.ly/{short_key}"
+    qr_image = make(url)
+    return qr_image.to_png()
+```
+
+**Pre-Generation (Faster):**
+```python
+def create_short_url(original_url):
+    short_key = generate_key()
+    db.insert(short_key, original_url)
+
+    # Generate and store QR code
+    qr_image = make(f"https://short.ly/{short_key}")
+    s3.upload(f"qr/{short_key}.png", qr_image)
+
+    return short_key
+```
+
+Cache QR codes in CDN for fast delivery.
+
+---
+
+#### **Q10: How do you migrate from one hashing algorithm to another?**
+
+**A:** **Dual-write strategy** for zero-downtime migration:
+
+**Phase 1: Dual Write**
+```python
+def create_short_url(url):
+    # Old algorithm (existing)
+    old_key = base62_encode(id)
+
+    # New algorithm (migration)
+    new_key = sha256_truncate(url)
+
+    # Write both
+    db.insert(old_key, url, algorithm="base62")
+    db.insert(new_key, url, algorithm="sha256")
+```
+
+**Phase 2: Read from Both**
+```python
+def get_url(short_key):
+    return db.query(short_key)  # Works for both algorithms
+```
+
+**Phase 3: Migrate Old Data** (background job)
+```python
+for old_url in db.query("SELECT * WHERE algorithm='base62'"):
+    new_key = sha256_truncate(old_url.original_url)
+    db.insert(new_key, old_url.original_url, algorithm="sha256")
+```
+
+**Phase 4: Switch to New Algorithm Only**
+```python
+def create_short_url(url):
+    new_key = sha256_truncate(url)
+    db.insert(new_key, url, algorithm="sha256")
+```
+
+---
+
+### **System Design Trade-offs**
+
+| **Decision** | **Chosen** | **Alternative** | **Why Chosen** |
+|-------------|-----------|----------------|---------------|
+| **Encoding** | Base62 | Base64, UUID | More compact, URL-safe, no special characters |
+| **Redirect** | HTTP 302 | HTTP 301 | Track every click for analytics |
+| **Cache** | Redis | Memcached | Persistence, data structures (TTL, sorted sets) |
+| **Database** | PostgreSQL (sharded) | NoSQL (Cassandra) | ACID transactions, relational analytics queries |
+| **ID Generation** | Auto-increment + Base62 | SHA-256 hash | Guaranteed uniqueness, no collision handling |
+
+---
+
+## **12. Summary: Key Takeaways**
+
+✅ **Base62 encoding** - Compact, URL-safe short keys (56.8B combinations with 6 chars)
+✅ **Redis caching** - Cache top 20% of URLs for 80% of traffic
+✅ **Database sharding** - Distribute across multiple databases for scalability
+✅ **HTTP 302** - Use temporary redirect to track every click
+✅ **Async analytics** - Don't block redirects with analytics writes
+✅ **Rate limiting** - Prevent abuse with per-IP and per-user limits
+✅ **Read replicas** - Scale reads independently from writes (100:1 ratio)
+
+🚀 **This is how Bit.ly, TinyURL, and short.io implement URL shorteners!**
