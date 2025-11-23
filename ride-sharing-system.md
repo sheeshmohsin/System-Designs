@@ -9,6 +9,7 @@ Design a scalable ride-sharing platform that matches riders with drivers in real
 ### Functional Requirements
 
 ✅ **Rider features:**
+
 - Request a ride (pickup location, destination, ride type)
 - View nearby drivers in real-time
 - Track driver location during pickup and ride
@@ -17,6 +18,7 @@ Design a scalable ride-sharing platform that matches riders with drivers in real
 - Payment processing
 
 ✅ **Driver features:**
+
 - Go online/offline
 - Accept/reject ride requests
 - Navigate to pickup location and destination
@@ -25,6 +27,7 @@ Design a scalable ride-sharing platform that matches riders with drivers in real
 - Rate rider after ride completion
 
 ✅ **Admin features:**
+
 - Monitor active rides
 - Handle disputes
 - Manage surge pricing
@@ -33,12 +36,19 @@ Design a scalable ride-sharing platform that matches riders with drivers in real
 ### Non-Functional Requirements
 
 ✅ **Scalability** - Handle millions of concurrent users globally
+
 ✅ **Low latency** - Driver matching within 2-3 seconds, location updates < 1 second
+
 ✅ **High availability** - 99.99% uptime (critical for safety)
+
 ✅ **Consistency** - No double-booking of drivers
+
 ✅ **Real-time** - Live location tracking and updates
+
 ✅ **Accuracy** - Precise geospatial matching (within 500m radius)
+
 ✅ **Security** - Payment security, user data protection
+
 ✅ **Reliability** - No missed ride requests or failed payments
 
 ---
