@@ -42,7 +42,7 @@ Follow this structured learning path to build your system design knowledge progr
 | Status | Topic | Key Concepts | Difficulty |
 |--------|-------|--------------|------------|
 | ✅ | **[Video Streaming Platform](video-streaming-platform.md)** | CDN, Video transcoding, HLS/DASH, Multi-tier caching | ⭐⭐⭐ |
-| 🚧 | **Rate Limiting & API Gateway** | Token bucket, Sliding window, Redis counters | ⭐⭐⭐ |
+| ✅ | **[Rate Limiter](rate-limiter.md)** | Token bucket, Sliding window, Redis, Distributed systems | ⭐⭐⭐ |
 
 **What you'll learn:**
 - Multi-service architecture
@@ -138,6 +138,26 @@ Architect a distributed video streaming platform with adaptive bitrate streaming
 - [Streaming Workflow (HLS/DASH/CMAF)](video-streaming-platform/streaming-workflow.md)
 - [Digital Rights Management (DRM)](video-streaming-platform/DRM.md)
 - [CDN Caching Strategies](video-streaming-platform/CDN-Caching.md)
+
+---
+
+#### 3. [Rate Limiter (API Throttling)](rate-limiter.md)
+Design a distributed rate limiting system to prevent API abuse and ensure fair usage.
+
+**Key Features:**
+- Multiple rate limiting algorithms (Token Bucket, Leaky Bucket, Sliding Window)
+- Distributed rate limiting with Redis
+- Multi-tier limits (free, premium, enterprise)
+- Per-IP, per-user, per-endpoint limiting
+- Graceful degradation strategies
+
+**Technologies:** Redis, Lua scripts, Token Bucket algorithm, Sliding Window Counter
+
+**Key Concepts:**
+- 5 rate limiting algorithms compared
+- Distributed systems with Redis Cluster
+- Atomic operations with Lua scripts
+- Multi-tier and composite rate limiting
 
 ---
 

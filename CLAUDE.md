@@ -34,6 +34,12 @@ The repository is organized as follows:
      - `DRM.md` - Digital Rights Management implementation
      - `CDN-Caching.md` - Content delivery optimization
 
+3. **Rate Limiter** (`rate-limiter.md`) - API throttling and abuse prevention
+   - 5 rate limiting algorithms (Token Bucket, Leaky Bucket, Sliding Window)
+   - Distributed rate limiting with Redis
+   - Multi-tier and composite limiting strategies
+   - Interview questions covering distributed systems challenges
+
 ## Documentation Standards
 
 When working with system design documents in this repository:
