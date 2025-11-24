@@ -60,7 +60,7 @@ Follow this structured learning path to build your system design knowledge progr
 | Status | Topic | Key Concepts | Difficulty |
 |--------|-------|--------------|------------|
 | ✅ | **[Ride-Sharing System (Uber)](ride-sharing-system.md)** | Geospatial indexing, WebSockets, Real-time matching | ⭐⭐⭐⭐ |
-| 📝 | **Real-time Chat Application** | WebSockets, Message queues, Presence detection | ⭐⭐⭐⭐ |
+| ✅ | **[Real-time Chat Application (WhatsApp/Slack)](chat-application.md)** | WebSockets, Message queues, Presence detection | ⭐⭐⭐⭐ |
 | 📝 | **E-commerce System** | Inventory management, Payment processing, Order fulfillment | ⭐⭐⭐⭐ |
 | 📝 | **Distributed Search Engine** | Inverted index, Ranking algorithms, Elasticsearch | ⭐⭐⭐⭐⭐ |
 
@@ -71,6 +71,15 @@ Follow this structured learning path to build your system design knowledge progr
 - Distributed locks to prevent double-booking
 - Geographic database sharding
 - Fraud detection patterns
+
+**What you'll learn (Chat Application):**
+- WebSocket bidirectional communication
+- Multi-tier storage (PostgreSQL + Cassandra)
+- Message delivery guarantees (sent, delivered, read)
+- Online presence and typing indicators
+- Redis Pub/Sub for horizontal scaling
+- Group chat fan-out patterns
+- End-to-end encryption (Signal Protocol)
 
 **Legend:**
 - ✅ Complete with detailed documentation
@@ -199,9 +208,33 @@ Design a real-time ride-sharing platform with driver-rider matching and live loc
 
 ---
 
+#### 5. [Real-time Chat Application (WhatsApp/Slack)](chat-application.md)
+Design a scalable real-time messaging platform with one-on-one chat, group messaging, and online presence.
+
+**Key Features:**
+- One-on-one and group messaging
+- Message delivery status (sent, delivered, read)
+- Online presence and typing indicators
+- Message history with pagination
+- Media sharing (images, videos, documents)
+- Push notifications for offline users
+- Full-text message search
+
+**Technologies:** WebSocket, Redis Pub/Sub, PostgreSQL, Cassandra, Kafka, Elasticsearch, S3
+
+**Key Concepts:**
+- WebSocket scaling with Redis Pub/Sub
+- Multi-tier storage strategy (hot/warm/cold)
+- Message delivery guarantees
+- Conversation-based database sharding
+- Rate limiting for spam prevention
+- End-to-end encryption (Signal Protocol)
+- Fan-out patterns for group chat
+
+---
+
 ### Planned Designs
 
-- **Real-time Chat Application (WhatsApp/Slack)**
 - **E-commerce Platform (Amazon)**
 - **Social Media Feed (Twitter/Instagram)**
 - **Distributed Cache (Redis Cluster)**
