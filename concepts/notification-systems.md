@@ -9,9 +9,13 @@ A **notification system** is responsible for delivering messages to users across
 ### Problems Without Proper Notification Architecture
 
 ❌ **Message loss** - Notifications fail silently without delivery guarantees
+
 ❌ **Poor scalability** - System crashes under high notification volume
+
 ❌ **No prioritization** - Critical alerts get delayed behind promotional messages
+
 ❌ **Duplicate notifications** - Users receive the same message multiple times
+
 ❌ **Lack of user control** - No way to manage notification preferences
 
 ### Goals
