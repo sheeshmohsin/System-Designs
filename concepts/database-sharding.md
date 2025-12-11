@@ -11,8 +11,11 @@ When a single database can't handle the load, sharding distributes data across m
 ### Problems with Single Database
 
 ❌ **Storage limits** - Single server can only hold so much data
+
 ❌ **Performance bottleneck** - CPU, memory, disk I/O limits
+
 ❌ **Single point of failure** - If the database goes down, everything stops
+
 
 ### Benefits of Sharding
 
