@@ -9,10 +9,15 @@
 ### Problems Without Resilience
 
 ❌ **Cascading failures** - One service failure takes down entire system
+
 ❌ **Resource exhaustion** - Threads blocked waiting for failed service
+
 ❌ **Slow responses** - Users wait for timeout on every failed request
+
 ❌ **No recovery** - System doesn't automatically recover
+
 ❌ **Thundering herd** - All requests hit recovering service simultaneously
+
 
 ### Goals
 
