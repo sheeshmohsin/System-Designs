@@ -9,9 +9,13 @@ A **message queue** is an asynchronous communication pattern where messages are 
 ### Problems Without Message Queues
 
 ❌ **Tight coupling** - Services directly depend on each other
+
 ❌ **Synchronous blocking** - Sender waits for receiver to process
+
 ❌ **Lost messages** - If receiver is down, messages are lost
+
 ❌ **Traffic spikes** - System can't handle sudden load
+
 
 ### Benefits of Message Queues
 
